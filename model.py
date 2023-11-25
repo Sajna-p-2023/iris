@@ -67,11 +67,12 @@ print('DT Accuracy : ', accuracy_score(y_test,dt_pred))
 
 # save the model
 import pickle
-filename = 'savedmodel.pkl'
-pickle.dump(model, open(filename, 'wb'))
-     
+pickle_file="savedmodel.pickle"
+with open(pickle_file,'wb') as file:
+    pickle.dump(model,file)
+    
 
-load_model = pickle.load(open(filename,'rb'))
+load_model = pickle.load(open(pickle_file,'rb'))
      
 
 load_model.predict([[6.0, 2.2, 4.0, 1.0]])
