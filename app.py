@@ -3,7 +3,7 @@ import pickle
 
 app = Flask(__name__)
 # load the model
-model = pickle.load(open('savedmodel.pickle', 'rb'))
+pkl_model = pickle.load(open('savedmodel.pickle', 'rb'))
 
 @app.route('/')
 def home():
@@ -17,7 +17,7 @@ def predict():
     sepal_width = float(request.form['sepal_width'])
     petal_length = float(request.form['petal_length'])
     petal_width = float(request.form['petal_width'])
-    result = model.predict([[sepal_length, sepal_width, petal_length, petal_width]])[0]
+    result = pkl_model.predict([[sepal_length, sepal_width, petal_length, petal_width]])[0]
     return render_template('result.html', **locals())
 
 if __name__== '__main__':
